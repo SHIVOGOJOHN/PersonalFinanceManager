@@ -5,6 +5,7 @@ A Kivy-based personal finance management app with cloud backup
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, NoTransition
 from kivy.core.window import Window
+from kivy.utils import platform
 
 # Import database and business logic
 from database import DatabaseHandler
@@ -17,8 +18,9 @@ from screens.transactions import TransactionsScreen
 from screens.metrics import MetricsScreen
 from screens.backup import BackupScreen
 
-# Set window size for desktop testing (comment out for mobile)
-Window.size = (400, 700)
+# Set window size ONLY for desktop testing (not on mobile)
+if platform not in ('android', 'ios'):
+    Window.size = (400, 700)
 
 
 class FinanceManagerApp(App):
